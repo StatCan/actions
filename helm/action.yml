@@ -1,0 +1,39 @@
+name: Helm Action
+description: Deploys a helm chart
+author: Statistics Canada
+
+inputs:
+  track:
+    description: The track for the deployment
+  release:
+    description: The Helm release name (required)
+  chart:
+    description: The Helm chart path (required)
+  chartVersion:
+    description: The version of the Helm chart
+  version:
+    description: The version of the application
+  namespace:
+    description: The Kubernetes namespace name (required)
+  tillerNamespace:
+    description: The Kubernetes tiller-namespace name for Helm (v2)
+  dryRun:
+    description: Whether is a dry run of the Helm chart
+  task:
+    description: The task name that if equals "removed" will uninstall the Helm release
+  token:
+    description: The GitHub repository token
+  values:
+    description: The Helm chart values to be interpolated
+  valueFiles:
+    description: Additional value files to be interpolated
+  secrets:
+    description: Secrets variables to include in values files interpolation
+
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
+runs:
+  using: docker
+  image: Dockerfile
