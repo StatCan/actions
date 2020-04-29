@@ -1,0 +1,41 @@
+name: Manage Kubeflow Pipelines.
+description: Build, deploy and run a Kubeflow Pipeline.
+author: William Hearn
+
+inputs:
+  KUBEFLOW_URL:
+    description: The endpoint where your Kubeflow UI is running.
+    required: true
+  X_AUTH_TOKEN:
+    description: The X-Auth-Token header
+    required: true
+  PIPELINE_CODE_PATH:
+    description: The full path name including the filename of the python file that describes the pipeline you want to run on Kubeflow.  This should be relative to the root of the GitHub repository where the Action is triggered.
+    require: true
+  PIPELINE_FUNCTION_NAME:
+    description: The name of the pipeline, this name will be the name of the pipeline in the Kubeflow UI.
+    require: true
+  EXPERIMENT_NAME:
+    description: The name of the experiment name within which the kubeflow experiment should run
+    required: false
+  PIPELINE_NAMESPACE:
+    description: The namespace in which the pipeline should run
+    required: false
+  RUN_PIPELINE:
+    description: Should github action also trigger the pipeline
+    required: false
+  VERSION_GITHUB_SHA:
+    description: Should github action also trigger the pipeline
+    required: false
+
+outputs:
+  WORKFLOW_URL:
+    description: URL that is a link to pipeline in Kubeflow
+
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
