@@ -17,7 +17,7 @@ RUN wget $(curl -s https://api.github.com/repos/mikefarah/yq/releases/latest | g
     chmod +x /usr/bin/yq
 
 # kubectl
-ENV KUBE_LATEST_VERSION="v1.15.10"
+ENV KUBE_LATEST_VERSION="v1.16.8"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
