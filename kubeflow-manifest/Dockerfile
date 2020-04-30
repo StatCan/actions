@@ -26,5 +26,15 @@ RUN apk add --update ca-certificates \
  && apk del --purge deps \
  && rm /var/cache/apk/*
 
+# kfctl
+ENV KFCTL_LATEST_VERSION="v1.15.10"
+
+RUN apk add --update ca-certificates \
+ && apk add --update -t deps curl \
+ && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_LATEST_VERSION}/kfctl_${KFCTL_LATEST_VERSION}-0-gf3edb9b_linux.tar.gz -o /usr/local/bin/kfctl \
+ && chmod +x /usr/local/bin/kfctl \
+ && apk del --purge deps \
+ && rm /var/cache/apk/*
+
 COPY ["src", "/src/"]
 ENTRYPOINT ["/src/main.sh"]
