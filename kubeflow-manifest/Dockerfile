@@ -4,7 +4,7 @@ RUN ["/bin/sh", "-c", "apk add --update --no-cache bash ca-certificates curl git
 
 # envsubst
 ENV BUILD_DEPS="gettext"  \
-    RUNTIME_DEPS="libintl"
+    RUNTIME_DEPS="libintl libc6-compat"
 
 RUN set -x && \
     apk add --update $RUNTIME_DEPS && \
