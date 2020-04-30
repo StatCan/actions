@@ -1,0 +1,15 @@
+name: kubectl Action
+description: Deploy to a Kubernetes cluster
+author: Statistics Canada
+
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
+runs:
+  using: docker
+  image: Dockerfile
+
+inputs:
+  kubeconfig:
+    description: 'base64 encoded .kube/config'
