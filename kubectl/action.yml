@@ -11,5 +11,7 @@ runs:
   image: Dockerfile
 
 inputs:
+  args:
+    description: 'arguments to pass to kubectl'
   kubeconfig:
     description: 'base64 encoded .kube/config'
