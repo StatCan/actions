@@ -1,0 +1,22 @@
+name: Kubeflow pipeline (flipcoin)
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout files in repo
+      uses: actions/checkout@master
+
+    - name: Kubeflow pipeline
+      id: kubeflow
+      uses: sylus/kubeflow-github-action@master
+      with:
+        KUBEFLOW_URL: ${{ secrets.KUBEFLOW_URL }}
+        X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
+        PIPELINE_CODE_PATH: "examples/pipeline_flipcoin.py"
+        PIPELINE_FUNCTION_NAME: "pipeline_flipcoin"
+        PIPELINE_PARAMETERS_PATH: "parameters.yaml"
+        EXPERIMENT_NAME: "Default"
+        RUN_PIPELINE: True
+        VERSION_GITHUB_SHA: False

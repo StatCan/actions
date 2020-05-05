@@ -57,7 +57,7 @@ def delete_cluster(cluster_name):
     name="DatabricksCluster",
     description="A toy pipeline that computes an approximation to pi with Azure Databricks."
 )
-def calc_pipeline(cluster_name="test-cluster", run_name="test-run", parameter="10"):
+def pipeline_calc(cluster_name="test-cluster", run_name="test-run", parameter="10"):
     create_cluster_task = create_cluster(cluster_name)
     submit_run_task = submit_run(run_name, create_cluster_task.outputs["cluster_id"], parameter)
     delete_run_task = delete_run(run_name)

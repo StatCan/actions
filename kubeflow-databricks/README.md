@@ -11,46 +11,14 @@ The action will collect the pipeline from a python file and compile it before up
 To compile a pipeline and upload it to kubeflow:
 
 ```yaml
-name: Compile and Deploy Kubeflow pipeline
+name: Kubeflow pipeline (databricks)
 on: [push]
-
-# Set environmental variables
 
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name: checkout files in repo
-      uses: actions/checkout@master
-
-    - name: Submit Kubeflow pipeline
-      id: kubeflow
-      uses: sylus/kubeflow-github-action@master
-      with:
-        KUBEFLOW_URL: ${{ secrets.KUBEFLOW_URL }}
-        X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
-        PIPELINE_CODE_PATH: "example_pipeline.py"
-        PIPELINE_FUNCTION_NAME: "flipcoin_pipeline"
-        PIPELINE_PARAMETERS_PATH: "parameters.yaml"
-        EXPERIMENT_NAME: "Default"
-        RUN_PIPELINE: False
-        VERSION_GITHUB_SHA: False
-
-```
-
-If you also would like to run the pipeline you can use the following:
-
-```yaml
-name: Compile, Deploy and Run on Kubeflow
-on: [push]
-
-# Set environmental variables
-
-jobs:
-  build:
-    runs-on: ubuntu-18.04
-    steps:
-    - name: checkout files in repo
+    - name: Checkout files in repo
       uses: actions/checkout@master
 
     - name: Submit and Run the Kubeflow pipeline
@@ -59,13 +27,12 @@ jobs:
       with:
         KUBEFLOW_URL: ${{ secrets.KUBEFLOW_URL }}
         X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
-        PIPELINE_CODE_PATH: "example_pipeline.py"
-        PIPELINE_FUNCTION_NAME: "flipcoin_pipeline"
+        PIPELINE_CODE_PATH: "examples/pipeline_databricks_calc.py"
+        PIPELINE_FUNCTION_NAME: "pipeline_calc"
         PIPELINE_PARAMETERS_PATH: "parameters.yaml"
         EXPERIMENT_NAME: "Default"
         RUN_PIPELINE: True
         VERSION_GITHUB_SHA: False
-
 ```
 
 ### Mandatory inputs

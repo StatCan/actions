@@ -53,7 +53,7 @@ def print_op(msg):
     name='Conditional execution pipeline',
     description='Shows how to use dsl.Condition().'
 )
-def flipcoin_pipeline():
+def pipeline_flipcoin():
     flip = flip_coin_op()
     with dsl.Condition(flip.output == 'heads'):
         random_num_head = random_num_op(0, 9)

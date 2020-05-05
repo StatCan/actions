@@ -13,8 +13,8 @@ COPY . .
 
 RUN chmod +x /entrypoint.sh
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements_kfp.txt
 
-RUN pip install -r requirements_databricks.txt
+RUN pip install -r requirements_kfp_azure_databricks.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
