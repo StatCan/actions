@@ -67,5 +67,5 @@ def pipeline_calc(cluster_name="test-cluster", run_name="test-run", parameter="1
 
 if __name__ == "__main__":
     compiler.Compiler()._create_and_write_workflow(
-        pipeline_func=calc_pipeline,
+        pipeline_func=pipeline_calc,
         package_path=__file__ + ".tar.gz")
