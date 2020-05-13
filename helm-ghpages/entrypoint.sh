@@ -7,6 +7,10 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
+function print_error() {
+    echo -e "\e[36mERROR: ${1}\e[m"
+}
+
 package() {
   helm init --client-only
   helm lint ${CHART}
@@ -29,31 +33,24 @@ push() {
 }
 
 if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
-
-    print_info "setup with ACTIONS_DEPLOY_KEY"
-
-    if [ -n "${SCRIPT_MODE}" ]; then
-        print_info "run as SCRIPT_MODE"
-        SSH_DIR="${HOME}/.ssh"
-    else
-        SSH_DIR="/root/.ssh"
-    fi
-    mkdir "${SSH_DIR}"
-    eval "$(ssh-agent -s)"
-    ssh-add - <<< "${ACTIONS_DEPLOY_KEY}"
-
-    REPOSITORY="git@github.com:${GITHUB_REPOSITORY}.git"
-
+  print_info "setup with ACTIONS_DEPLOY_KEY"
+  if [ -n "${SCRIPT_MODE}" ]; then
+    print_info "run as SCRIPT_MODE"
+    SSH_DIR="${HOME}/.ssh"
+  else
+    SSH_DIR="/root/.ssh"
+  fi
+  mkdir "${SSH_DIR}"
+  eval "$(ssh-agent -s)"
+  ssh-add - <<< "${ACTIONS_DEPLOY_KEY}"
+  REPOSITORY="git@github.com:${GITHUB_REPOSITORY}.git"
 elif [ -n "${GITHUB_TOKEN}" ]; then
-
-    print_info "setup with GITHUB_TOKEN"
-    print_error "GITHUB_TOKEN works only private repo,"
-
-    REPOSITORY="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
+  print_info "setup with GITHUB_TOKEN"
+  print_error "GITHUB_TOKEN works only private repo,"
+  REPOSITORY="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 else
-    print_error "not found ACTIONS_DEPLOY_KEY, GITHUB_TOKEN"
-    exit 1
+  print_error "not found ACTIONS_DEPLOY_KEY, GITHUB_TOKEN"
+  exit 1
 fi
 
 CHART=$1

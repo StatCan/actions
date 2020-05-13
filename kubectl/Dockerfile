@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-RUN ["/bin/sh", "-c", "apk add --update --no-cache bash ca-certificates curl git openssh"]
+RUN ["/bin/sh", "-c", "apk add --update --no-cache bash ca-certificates curl git libc6-compat openssh"]
 
 # envsubst
 ENV BUILD_DEPS="gettext"  \
@@ -17,12 +17,22 @@ RUN wget $(curl -s https://api.github.com/repos/mikefarah/yq/releases/latest | g
     chmod +x /usr/bin/yq
 
 # kubectl
-ENV KUBE_LATEST_VERSION="v1.15.10"
+ENV KUBE_LATEST_VERSION="v1.17.5"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
  && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
  && chmod +x /usr/local/bin/kubectl \
+ && apk del --purge deps \
+ && rm /var/cache/apk/*
+
+# kfctl
+ENV KFCTL_LATEST_VERSION="v1.0.1"
+
+RUN apk add --update ca-certificates \
+ && apk add --update -t deps curl \
+ && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_LATEST_VERSION}/kfctl_${KFCTL_LATEST_VERSION}-0-gf3edb9b_linux.tar.gz | tar xzf - \
+ && mv kfctl /usr/local/bin/kfctl \
  && apk del --purge deps \
  && rm /var/cache/apk/*
 

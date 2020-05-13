@@ -1,6 +1,6 @@
 FROM python:3.7-stretch
 
-LABEL "name"="Helm action"
+LABEL "name"="Kubeflow DataBricks action"
 LABEL "maintainer"="William Hearn <william.hearn@canada.ca>"
 LABEL "version"="1.0.0"
 

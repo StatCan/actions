@@ -11,6 +11,9 @@ runs:
   image: Dockerfile
 
 inputs:
+  app:
+    description: 'application to run'
+    default: 'kubectl'
   args:
     description: 'arguments to pass to kubectl'
   kubeconfig:

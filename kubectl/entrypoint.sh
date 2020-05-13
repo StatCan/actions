@@ -9,4 +9,4 @@ if [[ -f "params.sh" ]]; then
   ./params.sh
 fi
 
-sh -c "kubectl $*"
+sh -c "$INPUT_APP $*"
