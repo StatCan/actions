@@ -32,7 +32,7 @@ ENV KFCTL_HASH="ga476281"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
- && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_VERSION}/kfctl_${KFCTL_VERSION}-0-${KFCTL_HASH}}_linux.tar.gz | tar xzf - \
+ && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_VERSION}/kfctl_${KFCTL_VERSION}-0-${KFCTL_HASH}_linux.tar.gz | tar xzf - \
  && mv kfctl /usr/local/bin/kfctl \
  && apk del --purge deps \
  && rm /var/cache/apk/*
