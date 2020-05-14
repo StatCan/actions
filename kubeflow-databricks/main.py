@@ -12,6 +12,7 @@ from client import Client
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 
+
 def load_function(pipeline_function_name: str, full_path_to_pipeline: str) -> object:
     """Function to load python function from filepath and filename
 
@@ -35,7 +36,6 @@ def load_function(pipeline_function_name: str, full_path_to_pipeline: str) -> ob
     logging.info("Succesfully loaded the pipeline function.")
     return pipeline_func
 
-
 def pipeline_compile(pipeline_function: object) -> str:
     """Function to compile pipeline. The pipeline is compiled to a zip file.
 
@@ -49,7 +49,6 @@ def pipeline_compile(pipeline_function: object) -> str:
     compiler.Compiler().compile(pipeline_function, pipeline_name_zip)
     logging.info("The pipeline function is compiled.")
     return pipeline_name_zip
-
 
 def upload_pipeline(pipeline_name_zip: str, pipeline_name: str, kubeflow_url: str):
     """Function to upload pipeline to kubeflow.
@@ -65,7 +64,6 @@ def upload_pipeline(pipeline_name_zip: str, pipeline_name: str, kubeflow_url: st
         pipeline_package_path=pipeline_name_zip,
         pipeline_name=pipeline_name)
     return client
-
 
 def find_pipeline_id(pipeline_name: str, client: kfp.Client, page_size: str = 100, page_token: str = "") -> str:
     """Function to find the pipeline id of a pipeline.
@@ -88,14 +86,11 @@ def find_pipeline_id(pipeline_name: str, client: kfp.Client, page_size: str = 10
             if pipeline.name == pipeline_name:
                 logging.info(f"The pipeline id is: {pipeline.id}")
                 return pipeline.id
-        # Start need to know where to do next itteration from
         page_token = pipelines.next_page_token
-        # If no next tooken break
         if not page_token:
             logging.info(
                 f"Could not find the pipeline, is the name: {pipeline_name} correct?")
             break
-
 
 def find_experiment_id(experiment_name: str, client: kfp.Client, page_size: int = 100, page_token: str = "") -> str:
     """Function to return the experiment id
@@ -114,17 +109,13 @@ def find_experiment_id(experiment_name: str, client: kfp.Client, page_size: int 
             if experiments.name == experiment_name:
                 logging.info("Succesfully collected the experiment id")
                 return experiments.id
-        # Start need to know where to do next itteration from
         page_token = experiments.next_page_token
-        # If no next tooken break
         if not page_token:
             logging.info(
                 f"Could not find the pipeline id, is the experiment name: {experiments_name} correct? ")
             break
 
-
 def read_pipeline_params(pipeline_paramters_path: str) -> dict:
-    # [TODO] add docstring here
     pipeline_params = {}
     with open(pipeline_paramters_path) as f:
         try:
@@ -137,7 +128,6 @@ def read_pipeline_params(pipeline_paramters_path: str) -> dict:
         logging.info(f"The paramters are: {pipeline_params}")
     return pipeline_params
 
-
 def run_pipeline(client: kfp.Client, pipeline_name: str, pipeline_id: str, pipeline_paramters_path: dict):
     experiment_id = find_experiment_id(
         experiment_name=os.environ["INPUT_EXPERIMENT_NAME"], client=client)
@@ -149,7 +139,6 @@ def run_pipeline(client: kfp.Client, pipeline_name: str, pipeline_id: str, pipel
     if (os.getenv("INPUT_PIPELINE_NAMESPACE") != None) and (str.isspace(os.getenv("INPUT_PIPELINE_NAMESPACE")) == False) and os.getenv("INPUT_PIPELINE_NAMESPACE"):
         namespace = os.environ["INPUT_PIPELINE_NAMESPACE"]
         logging.info(f"The namespace that will be used is: {namespace}")
-    # [TODO] What would be a good way to name the jobs
     job_name = pipeline_name + datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
     logging.info(f"The job name is: {job_name}")
 
@@ -161,13 +150,11 @@ def run_pipeline(client: kfp.Client, pipeline_name: str, pipeline_id: str, pipel
     client.run_pipeline(
         experiment_id=experiment_id,
         job_name=job_name,
-        # Read this as a yaml, people seam to prefer that to json.
         params=pipeline_params,
         pipeline_id=pipeline_id,
         namespace=namespace)
     logging.info(
         "Successfully started the pipeline, head over to kubeflow to check it out")
-
 
 def main():
     logging.info(

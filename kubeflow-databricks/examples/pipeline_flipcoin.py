@@ -27,7 +27,6 @@ def random_num_op(low, high):
         file_outputs={'output': '/tmp/output'}
     )
 
-
 def flip_coin_op():
     """Flip a coin and output heads or tails randomly."""
     return dsl.ContainerOp(
@@ -39,7 +38,6 @@ def flip_coin_op():
         file_outputs={'output': '/tmp/output'}
     )
 
-
 def print_op(msg):
     """Print a message."""
     return dsl.ContainerOp(
@@ -47,7 +45,6 @@ def print_op(msg):
         image='alpine:3.6',
         command=['echo', msg],
     )
-
 
 @dsl.pipeline(
     name='Conditional execution pipeline',

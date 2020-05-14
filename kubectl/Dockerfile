@@ -17,21 +17,22 @@ RUN wget $(curl -s https://api.github.com/repos/mikefarah/yq/releases/latest | g
     chmod +x /usr/bin/yq
 
 # kubectl
-ENV KUBE_LATEST_VERSION="v1.17.5"
+ENV KUBE_VERSION="v1.17.5"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
- && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
+ && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
  && chmod +x /usr/local/bin/kubectl \
  && apk del --purge deps \
  && rm /var/cache/apk/*
 
 # kfctl
-ENV KFCTL_LATEST_VERSION="v1.0.1"
+ENV KFCTL_VERSION="v1.0.2"
+ENV KFCTL_HASH="ga476281"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
- && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_LATEST_VERSION}/kfctl_${KFCTL_LATEST_VERSION}-0-gf3edb9b_linux.tar.gz | tar xzf - \
+ && curl -L https://github.com/kubeflow/kfctl/releases/download/${KFCTL_VERSION}/kfctl_${KFCTL_VERSION}-0-${KFCTL_HASH}}_linux.tar.gz | tar xzf - \
  && mv kfctl /usr/local/bin/kfctl \
  && apk del --purge deps \
  && rm /var/cache/apk/*

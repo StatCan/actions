@@ -11,10 +11,8 @@ LABEL "com.github.actions.description"="This is an Action to submit a Kubeflow P
 
 COPY . .
 
-RUN chmod +x /entrypoint.sh
-
-RUN pip install -r requirements_kfp.txt
-
-RUN pip install -r requirements_kfp_azure_databricks.txt
+RUN chmod +x /entrypoint.sh && \
+    pip install -r requirements_kfp.txt && \
+    pip install -r requirements_kfp_azure_databricks.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
