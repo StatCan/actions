@@ -37,5 +37,15 @@ RUN apk add --update ca-certificates \
  && apk del --purge deps \
  && rm /var/cache/apk/*
 
+# argo
+ENV ARGO_VERSION="v2.8.1"
+
+RUN apk add --update ca-certificates \
+ && apk add --update -t deps curl \
+ && curl -L https://github.com/argoproj/argo/releases/download/${ARGO_VERSION}/argo-linux-amd64 -o /usr/local/bin/argo \
+ && chmod +x /usr/local/bin/argo \
+ && apk del --purge deps \
+ && rm /var/cache/apk/*
+
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
