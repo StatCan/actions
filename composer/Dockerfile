@@ -11,6 +11,7 @@ LABEL "com.github.actions.description"="This is an Action to execute composer co
 
 RUN set -xe && \
     apk add --no-cache \
+        patch \
         git \
         libzip \
     && \
@@ -66,4 +67,4 @@ WORKDIR /app
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD ["--info"]
+CMD ["--version"]
