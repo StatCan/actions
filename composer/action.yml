@@ -1,0 +1,11 @@
+name: Composer Action
+description: Execute composer commands
+author: Statistics Canada
+
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
+runs:
+  using: docker
+  image: Dockerfile
