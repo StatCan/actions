@@ -1,0 +1,46 @@
+name: ACR Task Action
+description: Use the Azure Container Registry to build a container image
+author: Statistics Canada
+
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
+inputs:
+  service_principal:
+    description: 'Service Principal with Contributor role on the ACR'
+    required: true
+  service_principal_password:
+    description: 'Service Principal password'
+    required: true
+  tenant:
+    description: 'Azure Container Registry tenant'
+    required: true
+  registry:
+    description: 'The name of the ACR, minus the .azurecr.io'
+    required: true
+  repository:
+    description: 'Repository to use'
+    required: true
+  repository_crds:
+    description: 'Repository credentials to use if is a private repository'
+    required: false
+  image:
+    description: 'Docker image name'
+    required: false
+  tag:
+    description: 'Docker image tag, default to the commit SHA'
+    required: false
+  branch:
+    description: 'Branch to build from, defaults to master'
+    required: false
+  folder:
+    description: 'The folder in the Github repo that holds the source'
+    required: true
+  dockerfile:
+    description: 'The location of the Dockerfile; defaults to ./Dockerfile'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
