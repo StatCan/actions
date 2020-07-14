@@ -15,7 +15,7 @@ echo "Building Docker image ${INPUT_REPOSITORY}${IMAGE_PART}:${INPUT_TAG} from $
 
 az login --service-principal -u ${INPUT_SERVICE_PRINCIPAL} -p "${INPUT_SERVICE_PRINCIPAL_PASSWORD}" --tenant ${INPUT_TENANT}
 
-if [ -z "${INPUT_REPOSITORY_CRDS}" ]; then
+if [ ! -z "${INPUT_REPOSITORY_CRDS}" ]; then
   az acr build -r ${INPUT_REGISTRY} -f ${INPUT_DOCKERFILE} -t ${INPUT_REPOSITORY}${IMAGE_PART}:${INPUT_TAG} https://"${INPUT_REPOSITORY_CRDS}"@github.com/${GITHUB_REPOSITORY}.git#${INPUT_BRANCH}:${INPUT_FOLDER}
 else
   az acr build -r ${INPUT_REGISTRY} -f ${INPUT_DOCKERFILE} -t ${INPUT_REPOSITORY}${IMAGE_PART}:${INPUT_TAG} https://github.com/${GITHUB_REPOSITORY}.git#${INPUT_BRANCH}:${INPUT_FOLDER}
