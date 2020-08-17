@@ -22,3 +22,6 @@ else
   echo "Executing agaisnt public repository"
   az acr build -r ${INPUT_REGISTRY} -f ${INPUT_DOCKERFILE} -t ${INPUT_REPOSITORY}${IMAGE_PART}:${INPUT_TAG} https://github.com/${GITHUB_REPOSITORY}.git#${INPUT_BRANCH}:${INPUT_FOLDER}
 fi
+
+IMAGE_URL=${INPUT_REGISTRY}.azurecr.io/${INPUT_REPOSITORY}${IMAGE_PART}:${INPUT_TAG}
+echo "::set-output name=image_url::$IMAGE_URL"
