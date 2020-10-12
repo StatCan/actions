@@ -1,4 +1,5 @@
 #!/bin/bash
+# Initially developed by https://github.com/stefanprodan/gh-actions
 
 set -o errexit
 set -o pipefail

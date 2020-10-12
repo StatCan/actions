@@ -1,4 +1,5 @@
 #!/bin/bash
+# Initially developed by https://github.com/ams0/acr-task-github-action
 
 set -o errexit
 set -o pipefail

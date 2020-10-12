@@ -1,4 +1,4 @@
-// Derived from on the work done by DeliveryBot @ https://github.com/deliverybot/helm/blob/master/index.js
+// Initially developed by https://github.com/deliverybot/helm/blob/master/index.js
 
 const core = require("@actions/core");
 const github = require("@actions/github");
