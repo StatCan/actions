@@ -13,7 +13,6 @@ function print_error() {
 }
 
 package() {
-  helm init --client-only
   helm lint ${CHART}
   mkdir /github/home/pkg
   print_info "Package Helm chart"
