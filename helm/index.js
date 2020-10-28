@@ -205,7 +205,6 @@ async function run() {
       "--wait",
       "--atomic",
       `--namespace=${namespace}`,
-      '--home=/root/.helm/',
     ];
 
     if (dryRun) args.push("--dry-run");
