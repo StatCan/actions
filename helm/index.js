@@ -169,7 +169,7 @@ async function run() {
     const valueFiles = getValueFiles(getInput("valueFiles"));
     const secrets = getSecrets(core.getInput("secrets"));
     const removeCanary = getInput("removeCanary");
-    const helm = getInput("helm") || "helm";
+    const helm = getInput("helm") || "helm3";
     const timeout = getInput("timeout");
     const repository = getInput("repository");
 
