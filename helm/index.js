@@ -205,7 +205,6 @@ async function run() {
       "--wait",
       "--atomic",
       `--namespace=${namespace}`,
-      `--tiller-namespace=${tillerNamespace}`,
       '--home=/root/.helm/',
     ];
 
