@@ -57,10 +57,6 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 
 COPY --from=composer:2.0.4 /usr/bin/composer /usr/local/bin/composer
 
-RUN set -xe && \
-        composer global require hirak/prestissimo && \
-        composer clear-cache
-
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /app
