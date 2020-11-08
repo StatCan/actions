@@ -53,9 +53,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_MEMORY_LIMIT=-1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_PATH=/usr/local/bin/composer \
-    COMPOSER_VERSION=1.10.7
+    COMPOSER_VERSION=2.0.4
 
-COPY --from=composer:1.10.7 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2.0.4 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -xe && \
         composer global require hirak/prestissimo && \
