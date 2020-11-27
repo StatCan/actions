@@ -27,8 +27,8 @@ RUN apk add --update ca-certificates \
  && rm /var/cache/apk/*
 
 # kfctl
-ENV KFCTL_VERSION="v1.0.2"
-ENV KFCTL_HASH="ga476281"
+ENV KFCTL_VERSION="v1.1.0"
+ENV KFCTL_HASH="g9a3621e"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
