@@ -42,7 +42,9 @@ ENV ARGO_VERSION="v2.11.8"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
- && curl -L https://github.com/argoproj/argo/releases/download/${ARGO_VERSION}/argo-linux-amd64 -o /usr/local/bin/argo \
+ && curl -L https://github.com/argoproj/argo/releases/download/${ARGO_VERSION}/argo-linux-amd64.gz -o /usr/local/bin/argo.gz \
+ && gunzip /usr/local/bin/argo.gz \
+ && chmod +x /usr/local/bin/argo \
  && chmod +x /usr/local/bin/argo \
  && apk del --purge deps \
  && rm /var/cache/apk/*
