@@ -38,7 +38,7 @@ RUN apk add --update ca-certificates \
  && rm /var/cache/apk/*
 
 # argo
-ENV ARGO_VERSION="v2.8.1"
+ENV ARGO_VERSION="v2.11.8"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps curl \
