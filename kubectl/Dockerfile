@@ -15,8 +15,8 @@ RUN set -x && \
 # yq
 ENV YQ_VERSION="3.4.1"
 
-RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq && \
-    chmod +x /usr/bin/yq
+RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq \
+    && chmod +x /usr/bin/yq
 
 # kubectl
 ENV KUBE_VERSION="v1.17.5"
