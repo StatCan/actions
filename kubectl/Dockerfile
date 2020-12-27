@@ -13,7 +13,9 @@ RUN set -x && \
     apk del build_deps
 
 # yq
-RUN wget $(curl -s https://api.github.com/repos/mikefarah/yq/releases/latest | grep browser_download_url | grep linux_amd64 | cut -d '"' -f 4) -O /usr/bin/yq && \
+ENV YQ_VERSION="3.4.1"
+
+RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/bin/yq && \
     chmod +x /usr/bin/yq
 
 # kubectl
