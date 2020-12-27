@@ -16,5 +16,8 @@ inputs:
     default: 'kubectl'
   args:
     description: 'arguments to pass to kubectl'
+  dir:
+    description: 'The directory to execute the command under'
+    default: '.'
   kubeconfig:
     description: 'base64 encoded .kube/config'
