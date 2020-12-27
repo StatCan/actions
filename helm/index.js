@@ -131,7 +131,7 @@ function renderFiles(files, data) {
 }
 
 /**
- * A delete command that works for both helm 2 and 3
+ * A delete command for Helm
  *
  * @param {string} helm
  * @param {string} namespace
@@ -139,10 +139,7 @@ function renderFiles(files, data) {
  * @param {string} release
  */
 function deleteCmd(helm, namespace, tillerNamespace, release) {
-  if (helm === "helm3") {
-    return ["delete", "-n", namespace, release];
-  }
-  return ["delete", "--tiller-namespace", tillerNamespace, "--purge", release];
+  return ["delete", "-n", namespace, release];
 }
 
 /**
@@ -169,7 +166,7 @@ async function run() {
     const valueFiles = getValueFiles(getInput("valueFiles"));
     const secrets = getSecrets(core.getInput("secrets"));
     const removeCanary = getInput("removeCanary");
-    const helm = getInput("helm") || "helm3";
+    const helm = "helm";
     const timeout = getInput("timeout");
     const repository = getInput("repository");
 

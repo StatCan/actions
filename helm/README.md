@@ -21,14 +21,12 @@ Below is a list of the possible inputs that an be used in your GitHub Action.
 * `values`: The Helm chart values to be interpolated
 * `value-files`: Additional value files to be interpolated
 * `secrets`: Secrets variables to include in values files interpolation
-* `helm`: Which version of Helm to use: [`helm`, `helm3`]
 * `timeout`: The timeout for the Helm deployment
 * `repository`: The repository url of the Helm repository
 
 #### Versions
 
-* `helm`: v2.13.1
-* `helm3`: v3.0.0
+* `helm`: v3.0.0
 
 ### Environment
 
