@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm-alpine3.11
 
 LABEL "name"="Composer action"
 LABEL "maintainer"="William Hearn <william.hearn@canada.ca>"
