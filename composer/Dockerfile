@@ -2,7 +2,7 @@ FROM php:7.4-fpm-alpine3.11
 
 LABEL "name"="Composer action"
 LABEL "maintainer"="William Hearn <william.hearn@canada.ca>"
-LABEL "version"="1.0.0"
+LABEL "version"="1.0.1"
 
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="green"
