@@ -30,6 +30,8 @@ push() {
   git add .
   git commit -m "Publish Helm chart ${CHART}"
   git push origin gh-pages
+  # reset back to the original branch
+  git checkout -
 }
 
 if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
