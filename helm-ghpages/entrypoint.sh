@@ -14,7 +14,7 @@ function print_error() {
 
 package() {
   helm lint ${CHART}
-  mkdir /github/home/pkg
+  mkdir -p /github/home/pkg
   print_info "Package Helm chart"
   helm package ${CHART} --destination /github/home/pkg/
 }
@@ -40,7 +40,7 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
   else
     SSH_DIR="/root/.ssh"
   fi
-  mkdir "${SSH_DIR}"
+  mkdir -p "${SSH_DIR}"
   eval "$(ssh-agent -s)"
   ssh-add - <<< "${ACTIONS_DEPLOY_KEY}"
   REPOSITORY="git@github.com:${GITHUB_REPOSITORY}.git"
