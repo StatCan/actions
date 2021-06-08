@@ -9,7 +9,7 @@ LABEL "com.github.actions.color"="green"
 LABEL "com.github.actions.name"="Helm gh-pages"
 LABEL "com.github.actions.description"="This is an Action to package and publish Helm charts to GitHub Pages."
 
-ENV HELM_VERSION="v3.4.0"
+ENV HELM_VERSION="v3.6.0"
 
 
 RUN curl -Lo /tmp/helm-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
