@@ -9,7 +9,7 @@ LABEL "com.github.actions.color"="green"
 LABEL "com.github.actions.name"="Helm"
 LABEL "com.github.actions.description"="This is an Action to deploy a Helm chart."
 
-ENV HELM_3="v3.0.0"
+ENV HELM_3="v3.6.0"
 
 RUN apk add --update --no-cache ca-certificates \
       jq \
