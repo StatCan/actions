@@ -41,6 +41,10 @@ inputs:
     description: 'The location of the Dockerfile; defaults to ./Dockerfile'
     required: false
 
+outputs:
+  image_url:
+    description: 'Full tagged URL for image that was generated'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
