@@ -23,6 +23,7 @@ push() {
   git config user.email ${GITHUB_ACTOR}@users.noreply.github.com
   git config user.name ${GITHUB_ACTOR}
   git remote set-url origin ${REPOSITORY}
+  git checkout --ours .
   git checkout gh-pages
   mv /github/home/pkg/*.tgz .
   helm repo index . --url ${URL}
