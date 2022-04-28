@@ -66,5 +66,8 @@ if [[ -z $2 ]] ; then
   echo "Helm repository URL parameter needed!" && exit 1;
 fi
 
+# Workaround https://github.com/actions/checkout/issues/766
+git config --global --add safe.directory "/github/workspace"
+
 package
 push
