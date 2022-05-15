@@ -2,7 +2,7 @@ FROM php:8.1-fpm-alpine3.15
 
 LABEL "name"="Composer action"
 LABEL "maintainer"="William Hearn <william.hearn@canada.ca>"
-LABEL "version"="1.0.2"
+LABEL "version"="1.0.3"
 
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="green"
@@ -53,9 +53,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_MEMORY_LIMIT=-1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_PATH=/usr/local/bin/composer \
-    COMPOSER_VERSION=2.2.5
+    COMPOSER_VERSION=2.3.5
 
-COPY --from=composer:2.2.5 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2.3.5 /usr/bin/composer /usr/local/bin/composer
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
