@@ -9,6 +9,8 @@ LABEL "com.github.actions.color"="green"
 LABEL "com.github.actions.name"="Composer"
 LABEL "com.github.actions.description"="This is an Action to execute composer commands."
 
+USER 1001
+
 RUN set -xe && \
     apk add --no-cache \
         patch \
