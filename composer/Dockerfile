@@ -9,8 +9,6 @@ LABEL "com.github.actions.color"="green"
 LABEL "com.github.actions.name"="Composer"
 LABEL "com.github.actions.description"="This is an Action to execute composer commands."
 
-USER 1001
-
 RUN set -xe && \
     apk add --no-cache \
         patch \
@@ -62,6 +60,8 @@ COPY --from=composer:2.3.5 /usr/bin/composer /usr/local/bin/composer
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /app
+
+USER 1001
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
